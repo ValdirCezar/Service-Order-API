@@ -5,10 +5,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @NoArgsConstructor
@@ -23,6 +22,9 @@ public class User {
     private String name;
     private String login;
     private String password;
+
+    @OneToMany(mappedBy = "user")
+    List<ServiceOrder> services = new ArrayList<ServiceOrder>();
 
     public User(Integer id, String name, String login, String password) {
         this.id = id;
