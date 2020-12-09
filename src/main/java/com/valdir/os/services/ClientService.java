@@ -44,6 +44,15 @@ public class ClientService {
     }
 
     /**
+     * This method will delete a Client by id
+     * @return void
+     */
+    public void deleteById(Integer id) {
+        findById(id);
+        repository.deleteById(id);
+    }
+
+    /**
      * Method created to convert a Client to DTO
      * @return ClientDTO
      */

@@ -5,10 +5,7 @@ import com.valdir.os.domain.dtos.ClientDTO;
 import com.valdir.os.services.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
@@ -48,10 +45,17 @@ public class ClientController {
      * This method will insert a new Client
      * @return a Client
      */
-    public ResponseEntity<ClientDTO> insert(ClientDTO objDTO) {
+    @PostMapping
+    public ResponseEntity<ClientDTO> insert(@RequestBody ClientDTO objDTO) {
         Client newObj = service.insert(objDTO);
         objDTO = service.fromDTO(newObj);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(objDTO.getId()).toUri();
-        return ResponseEntity.created(uri).body(objDTO);
+        return ResponseEntity.created(uri).build();
+    }
+
+    @DeleteMapping(value = "/delete={id}")
+    public ResponseEntity<Void> delete(@PathVariable Integer id) {
+        service.deleteById(id);
+        return ResponseEntity.noContent().build();
     }
 }
