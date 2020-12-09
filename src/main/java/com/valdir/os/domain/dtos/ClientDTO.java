@@ -20,9 +20,7 @@ public class ClientDTO {
 
     @Column(nullable = false)
     private String phone;
-
-    @Column(nullable = false, columnDefinition = "boolean default true")
-    private Boolean active;
+    private Boolean active = true;
 
     public ClientDTO(Client obj) {
         this.id = obj.getId();

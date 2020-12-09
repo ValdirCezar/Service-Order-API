@@ -50,6 +50,7 @@ public class ClientService {
     public void deleteById(Integer id) {
         Client obj = findById(id);
         obj.setActive(false);
+        repository.save(obj);
     }
 
     /**
