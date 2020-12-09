@@ -44,12 +44,12 @@ public class ClientService {
     }
 
     /**
-     * This method will delete a Client by id
+     * This method will inactivate a Client by id
      * @return void
      */
     public void deleteById(Integer id) {
-        findById(id);
-        repository.deleteById(id);
+        Client obj = findById(id);
+        obj.setActive(false);
     }
 
     /**

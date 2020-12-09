@@ -43,7 +43,8 @@ public class ClientController {
 
     /**
      * This method will insert a new Client
-     * @return a Client
+     * @return a Client and a URI to access
+     * the new Client by id
      */
     @PostMapping
     public ResponseEntity<ClientDTO> insert(@RequestBody ClientDTO objDTO) {
@@ -52,7 +53,6 @@ public class ClientController {
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(objDTO.getId()).toUri();
         return ResponseEntity.created(uri).build();
     }
-
 
     @DeleteMapping(value = "/delete={id}")
     public ResponseEntity<Void> delete(@PathVariable Integer id) {
