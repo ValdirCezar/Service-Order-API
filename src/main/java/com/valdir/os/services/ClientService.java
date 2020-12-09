@@ -6,6 +6,7 @@ import com.valdir.os.repositories.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -22,8 +23,16 @@ public class ClientService {
     public Client findById(Integer id) {
         Optional<Client> obj = repository.findById(id);
         return obj.orElse(null);
+        // Implementar mensagem de objeto não encontrado
     }
 
+    /**
+     * This method will find all Clients or return a void
+     * @return List of Clients
+     */
+    public List<Client> findAll() {
+        return repository.findAll();
+    }
 
     /**
      * Method created to convert a Client to DTO
