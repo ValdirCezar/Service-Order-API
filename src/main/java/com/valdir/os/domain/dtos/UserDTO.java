@@ -1,4 +1,4 @@
-package com.valdir.os.dtos;
+package com.valdir.os.domain.dtos;
 
 import com.valdir.os.domain.User;
 import lombok.Getter;
