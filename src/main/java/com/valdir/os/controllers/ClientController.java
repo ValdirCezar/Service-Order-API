@@ -43,7 +43,8 @@ public class ClientController {
 
     /**
      * This method will insert a new Client
-     * @return a Client
+     * @return a Client and a URI to access
+     * the new Client by id
      */
     @PostMapping
     public ResponseEntity<ClientDTO> insert(@RequestBody ClientDTO objDTO) {
@@ -53,6 +54,10 @@ public class ClientController {
         return ResponseEntity.created(uri).build();
     }
 
+    /**
+     * This method will delete a Client by id
+     * @return a void content
+     */
     @DeleteMapping(value = "/delete={id}")
     public ResponseEntity<Void> delete(@PathVariable Integer id) {
         service.deleteById(id);
