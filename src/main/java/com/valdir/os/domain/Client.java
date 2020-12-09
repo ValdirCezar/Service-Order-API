@@ -22,7 +22,7 @@ public class Client {
     private String phone;
     private Boolean active;
 
-    @OneToMany(mappedBy = "client")
+    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
     private List<ServiceOrder> services = new ArrayList<>();
 
     public Client(Integer id, String name, String phone, Boolean active) {

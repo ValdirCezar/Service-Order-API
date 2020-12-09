@@ -8,6 +8,7 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
@@ -25,18 +26,27 @@ public class ServiceOrder implements Serializable {
     private LocalDateTime startDate;
     @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
     private LocalDateTime finishDate;
+
+    @Column(columnDefinition = "boolean default true")
     private Integer status;
+
+    @NotNull(message = "Field price is mandatory")
     private Double price;
+
+    @NotNull(message = "Field description is mandatory")
+    @Column(length = 2048)
     private String description;
 
     @JsonIgnore
     @ManyToOne
     @JoinColumn
+    @NotNull(message = "Field user is mandatory")
     private User user;
 
     @JsonIgnore
     @ManyToOne
     @JoinColumn
+    @NotNull(message = "Field client is mandatory")
     private Client client;
 
     public ServiceOrder(Integer id,
