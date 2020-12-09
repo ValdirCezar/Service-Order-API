@@ -54,13 +54,20 @@ public class ClientController {
         return ResponseEntity.created(uri).build();
     }
 
-    /**
-     * This method will delete a Client by id
-     * @return a void content
-     */
     @DeleteMapping(value = "/delete={id}")
     public ResponseEntity<Void> delete(@PathVariable Integer id) {
         service.deleteById(id);
         return ResponseEntity.noContent().build();
+    }
+
+    /**
+     * This method will update a new Client by id
+     * @return a ClientDTO updated
+     */
+    @PutMapping(value = "/update={id}")
+    public ResponseEntity<ClientDTO> update(@PathVariable Integer id, @RequestBody ClientDTO objDTO) {
+        Client newObj = service.update(id, objDTO);
+        objDTO = service.fromDTO(newObj);
+        return ResponseEntity.ok().body(objDTO);
     }
 }
