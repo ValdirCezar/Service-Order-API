@@ -53,6 +53,16 @@ public class ClientService {
     }
 
     /**
+     * This method will update a new Client by id
+     * @return a Client updated
+     */
+    public Client update(Integer id, ClientDTO objDTO) {
+        objDTO.setId(id);
+        Client newObj = new Client(objDTO.getId(), objDTO.getName(), objDTO.getPhone(), objDTO.getActive());
+        return repository.save(newObj);
+    }
+
+    /**
      * Method created to convert a Client to DTO
      * @return ClientDTO
      */
