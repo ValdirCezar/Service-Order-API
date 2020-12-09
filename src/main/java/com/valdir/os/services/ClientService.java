@@ -35,6 +35,15 @@ public class ClientService {
     }
 
     /**
+     * This method will insert a new Client
+     * @return a Client
+     */
+    public Client insert(ClientDTO objDTO) {
+        Client newObj = new Client(null, objDTO.getName(), objDTO.getPhone(), objDTO.getActive());
+        return repository.save(newObj);
+    }
+
+    /**
      * Method created to convert a Client to DTO
      * @return ClientDTO
      */

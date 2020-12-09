@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.net.URI;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -40,5 +42,16 @@ public class ClientController {
         List<Client> list = service.findAll();
         List<ClientDTO> listDTO = list.stream().map(obj -> service.fromDTO(obj)).collect(Collectors.toList());
         return ResponseEntity.ok().body(listDTO);
+    }
+
+    /**
+     * This method will insert a new Client
+     * @return a Client
+     */
+    public ResponseEntity<ClientDTO> insert(ClientDTO objDTO) {
+        Client newObj = service.insert(objDTO);
+        objDTO = service.fromDTO(newObj);
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(objDTO.getId()).toUri();
+        return ResponseEntity.created(uri).body(objDTO);
     }
 }
