@@ -25,7 +25,7 @@ public class DBService {
 
     public void instantiateDataBase() {
 
-        User u1 = new User(null, "Valdir Cezar", "valdir", "123");
+        User u1 = new User(null, "Valdir Cezar", "valdir", "123", true);
         Client c1 = new Client(null, "Albert Einstein", "43984526396", true);
         ServiceOrder so1 = new ServiceOrder(null, LocalDateTime.now(), null, Status.OPEN, 125.5, "Troca de fonte", u1, c1);
 
