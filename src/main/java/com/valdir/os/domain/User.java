@@ -20,16 +20,20 @@ public class User {
     private Integer id;
 
     private String name;
+
+    @Column(unique = true)
     private String login;
     private String password;
+    private Boolean active = true;
 
     @OneToMany(mappedBy = "user")
     List<ServiceOrder> services = new ArrayList<ServiceOrder>();
 
-    public User(Integer id, String name, String login, String password) {
+    public User(Integer id, String name, String login, String password, Boolean active) {
         this.id = id;
         this.name = name;
         this.login = login;
         this.password = password;
+        this.active = active;
     }
 }
