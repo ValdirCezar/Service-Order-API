@@ -10,7 +10,6 @@ import com.valdir.os.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
 import java.util.Arrays;
 
 @Service
@@ -27,7 +26,7 @@ public class DBService {
 
         User u1 = new User(null, "Valdir Cezar", "valdir", "123", true);
         Client c1 = new Client(null, "Albert Einstein", "43984526396", true);
-        ServiceOrder so1 = new ServiceOrder(null, LocalDateTime.now(), null, Status.OPEN, 125.5, "Troca de fonte", u1, c1);
+        ServiceOrder so1 = new ServiceOrder(null, null, Status.OPEN, 125.5, "Troca de fonte", u1, c1);
 
         u1.getServices().addAll(Arrays.asList(so1));
         c1.getServices().addAll(Arrays.asList(so1));

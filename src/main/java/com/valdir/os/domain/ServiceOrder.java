@@ -1,11 +1,8 @@
 package com.valdir.os.domain;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.valdir.os.enums.Status;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -16,6 +13,7 @@ import java.time.LocalDateTime;
 @Data
 @EqualsAndHashCode
 @NoArgsConstructor
+@Getter @Setter
 public class ServiceOrder implements Serializable {
 
     @Id
@@ -27,7 +25,6 @@ public class ServiceOrder implements Serializable {
     @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
     private LocalDateTime finishDate;
 
-    @Column(columnDefinition = "boolean default true")
     private Integer status;
 
     @NotNull(message = "Field price is mandatory")
@@ -37,20 +34,17 @@ public class ServiceOrder implements Serializable {
     @Column(length = 2048)
     private String description;
 
-    @JsonIgnore
     @ManyToOne
     @JoinColumn
     @NotNull(message = "Field user is mandatory")
     private User user;
 
-    @JsonIgnore
     @ManyToOne
     @JoinColumn
     @NotNull(message = "Field client is mandatory")
     private Client client;
 
     public ServiceOrder(Integer id,
-                        LocalDateTime startDate,
                         LocalDateTime finishDate,
                         Status status,
                         Double price,
@@ -58,7 +52,6 @@ public class ServiceOrder implements Serializable {
                         User user,
                         Client client) {
         this.id = id;
-        this.startDate = startDate;
         this.finishDate = finishDate;
         this.status = (status == null) ? null : status.getCode();
         this.price = price;
