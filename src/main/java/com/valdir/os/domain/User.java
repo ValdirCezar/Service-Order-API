@@ -1,5 +1,6 @@
 package com.valdir.os.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -26,6 +27,7 @@ public class User {
     private String password;
     private Boolean active = true;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "user")
     List<ServiceOrder> services = new ArrayList<ServiceOrder>();
 
