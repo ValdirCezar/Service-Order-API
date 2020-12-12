@@ -36,4 +36,14 @@ public class ServiceOrderController {
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/find={id}").buildAndExpand(obj.getId()).toUri();
         return ResponseEntity.created(uri).body(obj);
     }
+
+    /**
+     * This method will update a Service Order
+     * @return a Service Order updated
+     * */
+    @PatchMapping(value = "/update={id}")
+    public ResponseEntity<Void> update(@PathVariable Integer id, @RequestBody ServiceOrder obj) {
+        service.update(id, obj);
+        return ResponseEntity.ok().build();
+    }
 }

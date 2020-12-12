@@ -48,4 +48,15 @@ public class ServiceOrderService {
         obj.setClient(clientService.findById(obj.getClient().getId()));
         return repository.save(obj);
     }
+
+    /**
+     * This method will update a Service Order
+     * @return a Service Order updated
+     * */
+    public ServiceOrder update(Integer id, ServiceOrder obj) {
+        obj.setId(id);
+        Optional<ServiceOrder> up = repository.findById(obj.getId());
+        obj.setStartDate(up.get().getStartDate());
+        return repository.save(obj);
+    }
 }
